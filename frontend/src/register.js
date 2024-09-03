@@ -1,4 +1,3 @@
-const formRegister = document.getElementById("formRegister")
 
 const register = async (e) => {
 
