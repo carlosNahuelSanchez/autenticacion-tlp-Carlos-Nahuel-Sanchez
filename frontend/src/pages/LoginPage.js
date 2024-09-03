@@ -18,7 +18,7 @@ const LoginPage = () => {
             </div>
             <div class="mb-4">
                 <label for="passwordLogin" class="block text-sm">Contraseña</label>
-                <input type="passwordLogin" id="passwordLogin" name="passwordLogin" class="w-full px-2 py-1 border border-gray-300 rounded-md">
+                <input type="password" id="passwordLogin" name="passwordLogin" class="w-full px-2 py-1 border border-gray-300 rounded-md">
             </div>
         <button type="submit" class="w-full py-1 bg-blue-500 text-white rounded-md">Inicio Sesión</button>
     </form>

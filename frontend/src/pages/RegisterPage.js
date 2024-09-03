@@ -5,7 +5,7 @@ const RegisterPage = () => {
 
     const $FormRegister = document.createElement("div");
 
-    $FormRegister.classList.add("p-4", "bg-slate-200", "shadow-md", "h-80", "w-80")
+    $FormRegister.classList.add("p-4", "bg-slate-200", "shadow-md", "h-64", "w-80")
 
     $ContainerFormRegister.appendChild($FormRegister)
 

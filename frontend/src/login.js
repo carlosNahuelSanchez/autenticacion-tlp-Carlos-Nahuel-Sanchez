@@ -4,6 +4,7 @@ const login = async (e) => {
 
     const usernameLogin = document.getElementById("usernameLogin").value
     const passwordLogin = document.getElementById("passwordLogin").value
+
     try {
         const peticionLogin = await fetch("http://localhost:4000/login",{
             method: "POST",
@@ -13,15 +14,14 @@ const login = async (e) => {
             }
         })
         if (!peticionLogin.ok){
-            alert("Error al iniciar sesión")
+            return alert("Error al iniciar sesión")
         }
-        else{
+
         window.location.href = "/"
-        }
+
     } catch (error) {
         console.error("ERROR AL INICIAR SESIÓN",error)
     }
-    
 }
 
 export {login}

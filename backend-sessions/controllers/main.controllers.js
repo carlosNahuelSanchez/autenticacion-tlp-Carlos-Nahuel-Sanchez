@@ -19,7 +19,7 @@ const loginUsuarios = async (req, res) => {
         const connection = await ConnectionDataBase()
         const [buscarUsuario] = await connection.query("SELECT * FROM users WHERE username LIKE ?", [usernameLogin])
         connection.end()
-        if (!buscarUsuario) {
+        if (buscarUsuario.length === 0) {
             return res.status(400).json({ msg: "El usuario no existe" })
         }
             const validarContrasenia = await bcrypt.compare(passwordLogin, buscarUsuario[0].password)
