@@ -28,8 +28,8 @@ const loginUsuarios = async (req, res) => {
                     msg: 'El usuario o contraseña no coiciden'
                 })
             }
-            req.session.userId = buscarUsuario.id
-            req.session.username = buscarUsuario.username
+            req.session.userId = buscarUsuario[0].id
+            req.session.username = buscarUsuario[0].username
             return res.json({
                 message: 'Inicio de sesión exitoso',
             })
