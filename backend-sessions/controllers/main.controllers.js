@@ -30,6 +30,7 @@ const loginUsuarios = async (req, res) => {
             }
             req.session.userId = buscarUsuario[0].id
             req.session.username = buscarUsuario[0].username
+            console.log(req.session)
             return res.json({
                 message: 'Inicio de sesión exitoso',
             })
@@ -39,4 +40,24 @@ const loginUsuarios = async (req, res) => {
 
 }
 
-export { registrarUsuarios, loginUsuarios }
+const cerrarSesion = (req,res) => {
+    req.session.destroy(error =>{
+        if(error){
+            return res.status(500).json({message:"Error al cerrar sesión"})
+        }
+        res.clearCookie("connect.sid");
+        res.json({message:"Sesion Cerrada"})
+        console.log(req.session)
+    })
+}
+
+const sesion = (req,res) => {
+    try {
+        const sesionIniciada = !!req.session.userId;
+        return res.json({sesionIniciada, username: req.session.username})
+    } catch (error) {
+        res.status(401).json({sesionIniciada:false, message:"No existe session"},error)
+    }
+}
+
+export { registrarUsuarios, loginUsuarios, cerrarSesion, sesion }

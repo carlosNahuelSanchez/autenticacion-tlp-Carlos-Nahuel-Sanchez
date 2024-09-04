@@ -6,7 +6,14 @@ import { router } from "../routes/main.routes.js";
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:4000',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(express.json())
 app.use(morgan('dev'));
 app.use(session({
