@@ -1,9 +1,8 @@
-import { sesionIniciada } from "../services/auth.session"
+import { verificarJWT } from "../services/auth.jwt"
 
+const tokenExiste = verificarJWT()
 
 const Header = async () => {
-
-    const sesionAutorizada = await sesionIniciada()
 
     const $header = document.createElement("header")
 
@@ -13,7 +12,7 @@ const Header = async () => {
     <div class="my-5">
         <h1 class="text-4xl text-white text-center">Header Página</h1>
         <div class="flex justify-center gap-3">
-        ${sesionAutorizada 
+        ${tokenExiste
         ? 
             `<a id="logout" class="text-white text-lg hover:underline" href="/logout">Cerrar Sesión</a>`
         : 

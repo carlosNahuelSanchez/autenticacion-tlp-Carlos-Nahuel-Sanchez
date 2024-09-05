@@ -11,15 +11,16 @@ const login = async (e) => {
             body: JSON.stringify({usernameLogin,passwordLogin}),
             headers:{
                 "Content-type":"application/json"
-                
             },
-            credentials: "include"
         })
-        if (!peticionLogin.ok){
-            return alert("Error al iniciar sesión")
+        if (peticionLogin.ok){
+            const data = await peticionLogin.json()
+            localStorage.setItem("token", data.token)
+            window.location.href = "/"
         }
-
-        window.location.href = "/"
+        else{
+            alert("Error al iniciar sesión")
+        }
 
     } catch (error) {
         console.error("ERROR AL INICIAR SESIÓN",error)

@@ -1,6 +1,6 @@
-import { obtenerUsername } from "../services/auth.session";
+import { obtenerUsername } from "../services/auth.jwt";
 
-const username = await obtenerUsername()
+const username = obtenerUsername()
 
 const LandingPage = () => {
     const $ContainerLandingPage = document.createElement("main");
@@ -8,7 +8,7 @@ const LandingPage = () => {
     $ContainerLandingPage.classList.add("flex","h-screen","justify-center","items-center", "bg-slate-100");
 
     $ContainerLandingPage.innerHTML = `
-    <h1 class="text-2xl">Hola ${username}</h1>
+    <h1 class="text-2xl">Hola ${username} </h1>
 `;
 
 return $ContainerLandingPage;
