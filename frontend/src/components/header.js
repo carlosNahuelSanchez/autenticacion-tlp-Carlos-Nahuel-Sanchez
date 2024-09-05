@@ -1,4 +1,4 @@
-import { sesionIniciada } from "../auth.session"
+import { sesionIniciada } from "../services/auth.session"
 
 
 const Header = async () => {

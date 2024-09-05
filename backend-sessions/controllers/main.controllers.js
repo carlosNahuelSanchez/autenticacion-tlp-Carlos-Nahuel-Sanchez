@@ -4,12 +4,19 @@ import bcrypt from 'bcrypt';
 const registrarUsuarios = async (req, res) => {
     const { username, password } = req.body
     try {
-        const hashPassword = await bcrypt.hash(password, 10)
         const connection = await ConnectionDataBase()
+        const [userExist] = await connection.query("SELECT * FROM users WHERE username = ?", [username])
+        if (userExist.length > 0) {
+            console.error("El usuario ya existe")
+            return res.status(409).json({message:"El nombre de usuario ya existe"})
+        }
+        const hashPassword = await bcrypt.hash(password, 10)
         await connection.query("INSERT INTO `users`(`username`, `password`) VALUES (?,?)", [username, hashPassword])
+        res.status(201).json({ message: "Usuario registrado exitosamente" });
         connection.end()
     } catch (error) {
         console.error("NO SE PUDO REGISTRAR", error)
+        res.status(500).json({ message: "Error al registrar el usuario" });
     }
 }
 
@@ -20,7 +27,7 @@ const loginUsuarios = async (req, res) => {
         const [buscarUsuario] = await connection.query("SELECT * FROM users WHERE username LIKE ?", [usernameLogin])
         connection.end()
         if (buscarUsuario.length === 0) {
-            return res.status(400).json({ msg: "El usuario no existe" })
+            return res.status(400).json({ message: "El usuario no existe" })
         }
             const validarContrasenia = await bcrypt.compare(passwordLogin, buscarUsuario[0].password)
             if (!validarContrasenia) {
