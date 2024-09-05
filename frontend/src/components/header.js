@@ -13,12 +13,16 @@ const Header = async () => {
     <div class="my-5">
         <h1 class="text-4xl text-white text-center">Header Página</h1>
         <div class="flex justify-center gap-3">
-                <a id="logout" class="text-white text-lg hover:underline" href="/logout">Cerrar Sesión</a>
-                <a id="login" class="text-white text-lg hover:underline" href="/login">Iniciar Sesión</a>
-                <a id="register" class="text-white text-lg hover:underline" href="/register">Registro</a>
+        ${sesionAutorizada 
+        ? 
+            `<a id="logout" class="text-white text-lg hover:underline" href="/logout">Cerrar Sesión</a>`
+        : 
+            `<a id="login" class="text-white text-lg hover:underline" href="/login">Iniciar Sesión</a>
+            <a id="register" class="text-white text-lg hover:underline" href="/register">Registro</a>`
+        }  
         </div>
-    </div>
-    `;
+    </div>      
+    ;`
 
     return $header
 }

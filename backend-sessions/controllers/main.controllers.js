@@ -53,9 +53,10 @@ const cerrarSesion = (req,res) => {
 
 const sesion = (req,res) => {
     try {
-        const sesionIniciada = !!req.session.userId;
+        const sesionIniciada = req.session.userId;
         return res.json({sesionIniciada, username: req.session.username})
     } catch (error) {
+        console.error("Error al verificar la sesión:", error);
         res.status(401).json({sesionIniciada:false, message:"No existe session"},error)
     }
 }

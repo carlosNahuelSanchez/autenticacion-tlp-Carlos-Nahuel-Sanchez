@@ -2,7 +2,7 @@ const sesionIniciada = async () => {
     try {
         const response = await fetch("http://localhost:4000/api/auth-session",{
             method: "GET",
-            credentials: "include",
+            credentials: "include", 
         });
 
         if(response.ok){
