@@ -42,7 +42,7 @@ const loginUsuarios = async (req, res) => {
             id: buscarUsuario[0].id, username: buscarUsuario[0].username
         },
             SECRET_KEY,
-            { expiresIn: "1h" }
+            { expiresIn: "5h" }
         )
 
         return res.json({
